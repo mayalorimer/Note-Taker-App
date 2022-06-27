@@ -2,6 +2,9 @@ const fs = require('fs');
 const express = require('express'); 
 const path = require('path'); 
 
+//generating uniquie ids
+const uuid = require('./helpers/uuid');
+
 const PORT = process.env.PORT || 3001;
 
 const app = express(); 
@@ -23,29 +26,32 @@ app.get('*', (req, res) =>
 
 // get API route should read the db.json file and return all saved notes as JSON
 app.get('/api/notes', (req, res) => {
-    fs.readFile('./db/db.json', 'uft8', (err, data) => {
+    res.status(200).json(`${req.method} request recieved to get notes`);
+
+    console.info(`${req.method} request recieved to get notes`);
+/*     fs.readFile('./db/db.json', 'utf8', (err, data) => {
         if (err) {
             console.error(err);
         }
         else {
-            const notes = JSON.parse(data);
-            res.json(notes);
+            res.json(JSON.parse(data));
         }
-    });
+    }); */
 });
 
 // API post route to recieve a new note and add it to the db.json
 app.post('/api/notes', (req, res) => {
     const { title, text } = req.body; 
 
-    if ( title && text) {
+    if (title && text) {
         const newNote = {
             title,
             text,
+            review_id: uuid(),
         };
 
         // obtain the existing notes
-        fs.readFile('./db/db.json', 'uft8', (err, data) => {
+        fs.readFile('./db/db.json', 'utf8', (err, data) => {
             if (err) {
                 console.error(err);
             }
@@ -55,18 +61,19 @@ app.post('/api/notes', (req, res) => {
                 // Add a new review 
                 parsedNotes.push(newNote); 
 
-                fs.writeFile( './db/db.json', JSON.stringify(parsedNotes, null, 4), (writeErr) => {
+                fs.writeFile( './db/db.json', JSON.stringify(parsedNotes, null, 4), (writeErr) => 
                     writeErr ? console.error(writeErr) : console.info("successfully added note!")
-                });
+                );
             }
         });
         const response = {
             status: 'success',
             body: newNote,
         };
-
+        
         console.log(response);
         res.status(201).json(response); 
+
     } else {
         res.status(500).json("Error in adding note"); 
     }
