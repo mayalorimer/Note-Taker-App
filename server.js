@@ -26,6 +26,7 @@ app.get('/api/notes', (req, res) => {
             console.error(err);
         }
         else {
+            console.log(data); 
             res.json(JSON.parse(data));
         }
     }); 
@@ -42,7 +43,7 @@ app.post('/api/notes', (req, res) => {
         const newNote = {
             title,
             text,
-            review_id: uuid(),
+            id: uuid(),
         };
 
         // obtain the existing notes

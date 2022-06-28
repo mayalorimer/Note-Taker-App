@@ -1,36 +1,12 @@
 [
     {
-        "title": "Test Title",
-        "text": "Test text"
+        "title": "dsfa",
+        "text": "dfd",
+        "id": "320"
     },
     {
-        "title": "Maya",
-        "text": "test",
-        "review_id": "7e8"
-    },
-    {
-        "title": "Test",
-        "text": "123",
-        "review_id": "166"
-    },
-    {
-        "title": "Work",
-        "text": "work until 9",
-        "review_id": "20e"
-    },
-    {
-        "title": "Coffee",
-        "text": "drink coffee",
-        "review_id": "300"
-    },
-    {
-        "title": "Class",
-        "text": "go to class",
-        "review_id": "2e5"
-    },
-    {
-        "title": "Clean",
-        "text": "clean the house",
-        "review_id": "7ef"
+        "title": "test 2",
+        "text": "testing",
+        "id": "028"
     }
 ]
