@@ -19,24 +19,19 @@ app.get('/notes', (req, res) =>
     res.sendFile(path.join(__dirname, '/public/notes.html'))
 );
 
-// get route should return index.html
-app.get('*', (req, res) =>
-    res.sendFile(path.join(__dirname, '/public/index.html'))
-);
-
 // get API route should read the db.json file and return all saved notes as JSON
 app.get('/api/notes', (req, res) => {
-    res.status(200).json(`${req.method} request recieved to get notes`);
-
-    console.info(`${req.method} request recieved to get notes`);
-/*     fs.readFile('./db/db.json', 'utf8', (err, data) => {
+     fs.readFile('./db/db.json', 'utf8', (err, data) => {
         if (err) {
             console.error(err);
         }
         else {
             res.json(JSON.parse(data));
         }
-    }); */
+    }); 
+/*     res.status(200).json(`${req.method} request recieved to get notes`);
+
+    console.info(`${req.method} request recieved to get notes`); */
 });
 
 // API post route to recieve a new note and add it to the db.json
@@ -82,6 +77,12 @@ app.post('/api/notes', (req, res) => {
 
 
 });
+
+
+// get route should return index.html
+app.get('*', (req, res) =>
+    res.sendFile(path.join(__dirname, '/public/index.html'))
+);
 
 //initializes the port
 app.listen(PORT, () => {
