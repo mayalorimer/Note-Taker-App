@@ -16,7 +16,7 @@ This application is used to write down notes that are then stored on a web serve
 
 ## Links
 - Github Repo: https://github.com/mayalorimer/Note-Taker-App
-- Deployed Heroku Page: 
+- Deployed Heroku Page: https://fast-taiga-29369.herokuapp.com
 
 ## Screenshots 
 
